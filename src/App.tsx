@@ -4,6 +4,7 @@ import { UserCard } from "./components/UserCard";
 import { Counter } from "./components/Counter";
 import { LightSwitch } from "./components/LightSwitch";
 import { NinjaTeam} from "./components/NinjaTeam";
+import { UserManager } from "./components/UserManager";
 
 function App() {
   let items = ["New York", "San Fransisco", "Nepal", "Kathmandu"];
@@ -20,6 +21,7 @@ function App() {
       <Counter />
       <LightSwitch />
       <NinjaTeam />
+      <UserManager />
     </div>
   );
 }
