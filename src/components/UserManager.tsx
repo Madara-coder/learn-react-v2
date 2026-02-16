@@ -24,8 +24,14 @@ export const UserManager = () => {
     };
 
     {/* This function clears the entire list of users when called */ }
-    const clearUsers = () => {
+     const clearUsers = () => {
         setUsers([]);
+    };
+
+    // { This function removes that user }
+       const removeUser = (id: number) => {
+        console.log(id);
+        setUsers(users.filter((u) => u.id !== id))
     };
 
     return (
@@ -43,7 +49,8 @@ export const UserManager = () => {
                 <ul>
                     {users.map((u) => (
                         <li key={u.id}>
-                            ID: {u.id} | <strong>{u.name}</strong>
+                            ID: {u.id} | <strong>{u.name}</strong><br></br>
+                            <button onClick={() => removeUser(u.id)}>Dismiss {u.name}</button>
                         </li>
                     ))}
                 </ul>
