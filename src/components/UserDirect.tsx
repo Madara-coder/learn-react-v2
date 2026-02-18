@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FormEvent } from "react";
 
 interface UserDirect {
     id: number;
@@ -10,7 +11,8 @@ export const UserDirectManager = () => {
     const [name, setName] = useState("");
     const [users, setUsers] = useState<UserDirect[]>([]); // The list starts empty
 
-    const addUser = () => {
+    const addUser = (e: FormEvent) => {
+        e.preventDefault(); // Prevent form submission from refreshing the page
         if (name.trim() === "") {
             alert("Please enter a name");
             return;
@@ -33,14 +35,16 @@ export const UserDirectManager = () => {
             <h2>Ninja Recruitment</h2>
 
             <div>
-                <input
-                    type="text"
-                    value={name} // This is the "Controlled Component" part
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Enter Ninja Name"
-                />
-                {/* 4. We need a button to trigger the function! */}
-                <button onClick={addUser}>Add Ninja</button>
+                <form onSubmit={addUser}>
+                    <input
+                        type="text"
+                        value={name} // This is the "Controlled Component" part
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Enter Ninja Name"
+                    />
+                    {/* 4. We need a button to trigger the function! */}
+                    <button type="submit">Add Ninja</button>
+                </form>
             </div>
 
             {/* 5. Show the list so we can see it working */}
