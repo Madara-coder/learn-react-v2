@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FormEvent } from "react";
+import { useEffect } from "react";
 
 interface UserDirect {
     id: number;
@@ -10,6 +11,19 @@ export const UserDirectManager = () => {
     // 1. We need TWO states. One for the input, one for the list.
     const [name, setName] = useState("");
     const [users, setUsers] = useState<UserDirect[]>([]); // The list starts empty
+
+    // EFFECT 1: Load data from LocalStorage when the app starts
+    useEffect(() => {
+        const saved = localStorage.getItem("my_ninjas");
+        if (saved) {
+            setUsers(JSON.parse(saved));
+        }
+    }, []); // Empty dependency array = "Run on Mount"
+
+     // EFFECT 2: Save to LocalStorage whenever 'users' state changes
+     useEffect(() => {
+        localStorage.setItem("my_ninjas", JSON.stringify(users));
+    }, [users]); // Runs whenever 'users' is updated
 
     const addUser = (e: FormEvent) => {
         e.preventDefault(); // Prevent form submission from refreshing the page
