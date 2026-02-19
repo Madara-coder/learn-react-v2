@@ -10,7 +10,7 @@ STATE:
     - We must use them as mutable (changeable)
 
 USESTATE (useState):
-    - The useState hook is how we handle data that changes over time. TypeScript is usually smart enough to infer the type, 
+    - The useState hook is how we handle data that changes over time. TypeScript is usually smart enough to infer the type,
     but sometimes we need to be explicit using Generics.
     // Inferring: TS knows 'isLoggedIn' is a boolean
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -32,4 +32,6 @@ Types of Effects:
     - With Variables [name]: Runs every time name changes.
     - No Array: Runs on every single render (avoid this usually!).
 
+COMPONENT ARCHITECTURE ( DECOMPOSITION )
+    - putting everything in one file (the "Mega-Component") becomes a maintenance nightmare. In React, we handle this through Component Architecture.
 
