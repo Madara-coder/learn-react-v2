@@ -12,6 +12,7 @@ function App() {
 
   const handleSelectItem = (item: string) => {
     console.log(item);
+    // you can also do something else with the selected item, like updating state or making an API call
   }
 
   return (
