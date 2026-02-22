@@ -17,13 +17,15 @@ function App() {
 
   return (
     <div>
-      <ListGroup items={items} heading="Cities" onSelectItem={handleSelectItem}/>
+      {/* <ListGroup items={items} heading="Cities" onSelectItem={handleSelectItem}/>
       <DebrathDetail></DebrathDetail>
       <UserCard username="Madara" isOnline={true} points={"high"} />
       <Counter />
       <LightSwitch />
       <NinjaTeam />
       <UserManager />
+      <UserDirectManager /> */}
+
       <UserDirectManager />
     </div>
   );
