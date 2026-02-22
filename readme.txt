@@ -35,3 +35,23 @@ Types of Effects:
 COMPONENT ARCHITECTURE ( DECOMPOSITION )
     - putting everything in one file (the "Mega-Component") becomes a maintenance nightmare. In React, we handle this through Component Architecture.
 
+FETCHING DATA FROM API:
+
+What is Axios?
+-> Axios is a promise-based HTTP client that works in both the browser and Node.js. In React, we use it to talk to APIs.
+-> Axios is a library.
+-> `yarn add axios` to install axios.
+
+Why use Axios instead of fetch?
+- Automatic JSON Transformation:
+	- fetch: You have to call .json() on the response.
+	- Axios: It automatically parses the JSON for you. You just access response.data.
+- Better Error Handling:
+	- fetch: It only rejects the promise if there’s a network error. If the server returns a 404 or 500, fetch considers that a "success."
+	- Axios: It automatically throws an error (rejects) if the status code is outside the 2xx range.
+- Interceptors (The Killer Feature):
+	- You can "intercept" every request to automatically add an Auth Token to the headers, or "intercept" every response to handle global errors
+    (like logging out the user if a 401 Unauthorized is returned).
+- Simpler Syntax:
+	- Sending data in a POST request is as simple as axios.post(url, { myData }). No need to JSON.stringify the body or set the Content-Type header manually.
+
