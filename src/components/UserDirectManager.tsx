@@ -2,7 +2,7 @@ import { UserForm } from "./UserForm";
 import { useState } from "react";
 import { UserList } from "./UserList";
 
-// Define the structure of a user object
+// Defining the shape of our user objects in a separate file so we can import it in multiple places
 export interface UserDirect {
     id: number;
     name: string;
@@ -34,7 +34,7 @@ export const UserDirectManager = () => {
                 {/* We pass the "handleAddUser" function as a prop to the UserForm component */}
                 <UserForm onAddUser={handleAddUser} />
 
-               {/* Using UserList component and pass the data/function */}
+               {/* Using UserList component */}
                <UserList items={users} onDelete={handleDeleteUser} />
             </div>
         </>
