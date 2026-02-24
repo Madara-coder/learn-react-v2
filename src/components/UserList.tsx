@@ -16,6 +16,7 @@ export const UserList = ({ items, onDelete}: UserListProps) => {
                 </li>
             ))}
 
+            {/* items.length === 0 ? <p></p> : null */}
             {items.length === 0 && <p>The village is empty...</p>}
         </ul>
     );
