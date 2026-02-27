@@ -6,6 +6,7 @@ import { LightSwitch } from "./components/LightSwitch";
 import { NinjaTeam} from "./components/NinjaTeam";
 import { UserManager } from "./components/UserManager";
 import { UserDirectManager } from "./components/UserDirect";
+import { ExternalNinjaList } from "./components/ExternalNinjaList";
 
 function App() {
   let items = ["New York", "San Fransisco", "Nepal", "Kathmandu"];
@@ -26,7 +27,8 @@ function App() {
       <UserManager />
       <UserDirectManager /> */}
 
-      <UserDirectManager />
+      {/* <UserDirectManager /> */}
+      <ExternalNinjaList />
     </div>
   );
 }
