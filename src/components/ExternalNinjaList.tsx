@@ -23,7 +23,7 @@ export const ExternalNinjaList = () => {
         // 3. The Axios Magic
         // We use the <ApiUser[]> Generic to tell TS what 'data' looks like
         const response = await axios.get<ApiUser[]>(
-          "https://jsonplaceholder.typicode.com/users"
+          "https://jsonplaceholder.typicode.com/users-wrong"
         );
 
         // 4. Axios puts the JSON directly into the 'data' property
