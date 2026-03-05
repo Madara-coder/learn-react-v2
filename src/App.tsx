@@ -1,36 +1,64 @@
-import ListGroup from "./components/ListGroup";
-import DebrathDetail from "./components/DebrathDetail";
-import { UserCard } from "./components/UserCard";
-import { Counter } from "./components/Counter";
-import { LightSwitch } from "./components/LightSwitch";
-import { NinjaTeam} from "./components/NinjaTeam";
-import { UserManager } from "./components/UserManager";
-import { UserDirectManager } from "./components/UserDirect";
-import { ExternalNinjaList } from "./components/ExternalNinjaList";
+import { useState, useEffect } from "react";
+import { MissionForm } from "./components/MissionForm";
+import { MissionList } from "./components/MissionList";
 
-function App() {
-  let items = ["New York", "San Fransisco", "Nepal", "Kathmandu"];
+// 1. Define the Interface (The "Blueprint")
+export interface Mission {
+  id: number;
+  title: string;
+  isCompleted: boolean;
+}
 
-  const handleSelectItem = (item: string) => {
-    console.log(item);
-    // you can also do something else with the selected item, like updating state or making an API call
-  }
+export default function App() {
+  // 2. STATE: Initialize from LocalStorage (Lazy Loading)
+  const [missions, setMissions] = useState<Mission[]>(() => {
+    const saved = localStorage.getItem("shinobi_missions");
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  // 3. PERSISTENCE: Save whenever the mission list changes
+  useEffect(() => {
+    localStorage.setItem("shinobi_missions", JSON.stringify(missions));
+  }, [missions]);
+
+  // 4. LOGIC: Add a new mission
+  const addMission = (title: string) => {
+    const newMission: Mission = {
+      id: Date.now(),
+      title: title,
+      isCompleted: false,
+    };
+    setMissions([...missions, newMission]);
+  };
+
+  // 5. LOGIC: Toggle completion (The most important logic)
+  const toggleMission = (id: number) => {
+    setMissions(
+      missions.map((m) =>
+        m.id === id ? { ...m, isCompleted: !m.isCompleted } : m
+      )
+    );
+  };
+
+  // 6. LOGIC: Delete a mission
+  const deleteMission = (id: number) => {
+    setMissions(missions.filter((m) => m.id !== id));
+  };
 
   return (
-    <div>
-      {/* <ListGroup items={items} heading="Cities" onSelectItem={handleSelectItem}/>
-      <DebrathDetail></DebrathDetail>
-      <UserCard username="Madara" isOnline={true} points={"high"} />
-      <Counter />
-      <LightSwitch />
-      <NinjaTeam />
-      <UserManager />
-      <UserDirectManager /> */}
+    <div style={{ padding: "40px", fontFamily: "sans-serif" }}>
+      <h1>Leaf Village Mission Board</h1>
+      <hr />
 
-      {/* <UserDirectManager /> */}
-      <ExternalNinjaList />
+      {/* Input Component */}
+      <MissionForm onAdd={addMission} />
+
+      {/* Display Component */}
+      <MissionList
+        missions={missions}
+        onToggle={toggleMission}
+        onDelete={deleteMission}
+      />
     </div>
   );
 }
-
-export default App;
